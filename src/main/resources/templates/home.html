@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" href="../static/css/all.min.css" th:href="@{/css/all.min.css}">
+    <link rel="stylesheet" href="../static/css/style.css" th:href="@{/css/style.css}">
+    <title>AK.WIKI</title>
+</head>
+<body>
+
+<div class="navbar">
+    <div class="navbar-brand">
+        <img src="../static/wiki_icon.png" th:src="@{/images/wiki_icon.png}" alt="WIKI Icon">
+        <span>AK.WIKI</span>
+    </div>
+
+    <div class="search-bar">
+        <input type="text" placeholder="검색...">
+        <button><i class="fas fa-search"></i></button>
+        <button><i class="fas fa-random"></i></button>
+    </div>
+    <button><i class="fas fa-user"></i></button>
+</div>
+
+<div class="container mt-4">
+    <h1>환영합니다! 여러분이 만들어나가는 AK.WIKI에 오신 것을 환영합니다.</h1>
+    <p>AK.WIKI는 누구나 기여할 수 있는 위키입니다.</p>
+    <p>검증되지 않았거나 편향된 내용이 있을 수 있습니다.</p>
+</div>
+
+<footer>
+    <p>&copy; 2024 ArcoKim. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
