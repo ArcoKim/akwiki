@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{base :: layout ('계정 찾기', ~{::article})}">
+<body>
+
+<head>
+    <link rel="stylesheet" href="../../static/css/all.min.css" th:href="@{/css/all.min.css}" />
+    <link rel="stylesheet" href="../../static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+    <style>a { text-decoration: none; color: black; }</style>
+    <script src="../../static/scripts/bootstrap.bundle.min.js" th:src="@{/scripts/bootstrap.bundle.min.js}"></script>
+</head>
+
+<article>
+    <form th:action method="POST">
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email">
+        </div>
+        <div class="mb-3">
+            <label for="verify" class="form-label">인증번호</label>
+            <input type="text" class="form-control" id="verify">
+        </div>
+        <div class="float-end">
+            <button type="submit" name="id" class="btn btn-primary">아이디 찾기</button>
+            <button type="submit" name="password" class="btn btn-primary">비밀번호 찾기</button>
+        </div>
+    </form>
+</article>
+
+</body>
+</html>

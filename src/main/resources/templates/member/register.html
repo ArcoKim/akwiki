@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{base :: layout ('회원가입', ~{::article})}">
+<body>
+
+<head>
+    <link rel="stylesheet" href="../../static/css/all.min.css" th:href="@{/css/all.min.css}" />
+    <link rel="stylesheet" href="../../static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+    <style>a { text-decoration: none; color: black; }</style>
+    <script src="../../static/scripts/bootstrap.bundle.min.js" th:src="@{/scripts/bootstrap.bundle.min.js}"></script>
+</head>
+
+<article>
+    <form th:action method="POST">
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <div class="input-group">
+                <input type="text" class="form-control" id="email">
+                <span class="input-group-text">@</span>
+                <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">example.com</button>
+                <ul class="dropdown-menu dropdown-menu-end">
+                    <li><a class="dropdown-item" href="#"></a></li>
+                    <li><a class="dropdown-item" href="#">naver.com</a></li>
+                    <li><a class="dropdown-item" href="#">gmail.com</a></li>
+                    <li><a class="dropdown-item" href="#">kakao.com</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="username" class="form-label">Username</label>
+            <input type="text" class="form-control" id="username">
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" class="form-control" id="password">
+        </div>
+        <div class="float-end">
+            <button type="button" class="btn btn-primary">회원가입</button>
+        </div>
+    </form>
+</article>
+
+</body>
+</html>
