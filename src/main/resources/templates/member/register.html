@@ -11,31 +11,29 @@
 </head>
 
 <article>
-    <form th:action method="POST">
+    <form th:action method="POST" th:object="${registerForm}">
         <div class="mb-3">
             <label for="email" class="form-label">Email</label>
-            <div class="input-group">
-                <input type="text" class="form-control" id="email">
-                <span class="input-group-text">@</span>
-                <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">example.com</button>
-                <ul class="dropdown-menu dropdown-menu-end">
-                    <li><a class="dropdown-item" href="#"></a></li>
-                    <li><a class="dropdown-item" href="#">naver.com</a></li>
-                    <li><a class="dropdown-item" href="#">gmail.com</a></li>
-                    <li><a class="dropdown-item" href="#">kakao.com</a></li>
-                </ul>
-            </div>
+            <input type="text" class="form-control" id="email" th:field="*{email}">
+            <div class="alert alert-warning" role="alert" th:errors="*{email}">이메일 오류</div>
         </div>
         <div class="mb-3">
             <label for="username" class="form-label">Username</label>
-            <input type="text" class="form-control" id="username">
+            <input type="text" class="form-control" id="username" th:field="*{username}">
+            <div class="alert alert-warning" role="alert" th:errors="*{username}">아이디 오류</div>
+        </div>
+        <div class="mb-3">
+            <label for="nickname" class="form-label">Nickname</label>
+            <input type="text" class="form-control" id="nickname" th:field="*{nickname}">
+            <div class="alert alert-warning" role="alert" th:errors="*{nickname}">닉네임 오류</div>
         </div>
         <div class="mb-3">
             <label for="password" class="form-label">Password</label>
-            <input type="password" class="form-control" id="password">
+            <input type="password" class="form-control" id="password" th:field="*{password}">
+            <div class="alert alert-warning" role="alert" th:errors="*{password}">비밀번호 오류</div>
         </div>
         <div class="float-end">
-            <button type="button" class="btn btn-primary">회원가입</button>
+            <button type="submit" class="btn btn-primary">회원가입</button>
         </div>
     </form>
 </article>
