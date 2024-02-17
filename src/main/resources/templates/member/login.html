@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org"
-      th:replace="~{base :: layout ('로그인', ~{::article})}">
+      th:replace="~{base :: layout ('로그인', ~{::article}, ${base})}">
 <body>
 
 <head>
@@ -11,14 +11,20 @@
 </head>
 
 <article>
-    <form th:action method="POST">
+    <form th:action method="POST" th:object="${loginForm}">
+        <div th:if="${#fields.hasGlobalErrors()}">
+            <div class="alert alert-danger" role="alert"
+                 th:each="err : ${#fields.globalErrors()}" th:text="${err}">아이디 / 비밀번호 오류</div>
+        </div>
         <div class="mb-3">
-            <label for="email" class="form-label">Username</label>
-            <input type="email" class="form-control" id="email">
+            <label for="username" class="form-label">Username</label>
+            <input type="text" class="form-control" id="username" th:field="*{username}">
+            <div class="alert alert-warning" role="alert" th:errors="*{username}">사용자명 오류</div>
         </div>
         <div class="mb-3">
             <label for="password" class="form-label">Password</label>
-            <input type="password" class="form-control" id="password">
+            <input type="password" class="form-control" id="password" th:field="*{password}">
+            <div class="alert alert-warning" role="alert" th:errors="*{password}">비밀번호 오류</div>
         </div>
         <div class="d-flex mb-3">
             <div class="form-check">

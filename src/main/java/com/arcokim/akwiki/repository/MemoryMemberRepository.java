@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 
 import java.util.Map;
+import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 
 @Slf4j
@@ -20,5 +21,12 @@ public class MemoryMemberRepository implements MemberRepository {
         log.info("saved member = {}", member);
         store.put(member.getId(), member);
         return member;
+    }
+
+    @Override
+    public Optional<Member> findByUsername(String username) {
+        return store.values().stream()
+                .filter(member -> member.getUsername().equals(username))
+                .findAny();
     }
 }

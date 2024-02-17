@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org" th:fragment="layout (title, content)">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" th:fragment="layout (title, content, base)">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -31,13 +31,18 @@
         <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown">
             <i class="fas fa-user"></i>
         </button>
-        <ul class="dropdown-menu dropdown-menu-end">
-            <li><p class="ps-3 pt-1">비로그인 사용자<br />123.456.789.101</p></li>
+        <ul class="dropdown-menu dropdown-menu-end" th:object="${base}">
+            <!--/*@thymesVar id="base" type="com.arcokim.akwiki.controller.Base"*/-->
+            <li><p class="ps-3 pt-1">
+                <span th:text="*{member} ? '사용자' : '비로그인 사용자'">비로그인 사용자</span>
+                <br />
+                <span th:text="*{member} ? *{member.nickname} : *{ip}">123.456.789.101</span>
+            </p></li>
             <li>
-                <a class="dropdown-item" href="member/login.html" th:href="@{/member/login}">
-                    <!--                    <i class="fa-solid fa-right-from-bracket"></i>-->
-                    <i class="fa-solid fa-right-to-bracket"></i>
-                    <span class="ms-1">로그인</span>
+                <a class="dropdown-item" href="member/login.html"
+                   th:href="*{member} ? @{/member/logout} : @{/member/login}">
+                    <i class="fa-solid" th:classappend="*{member} ? 'fa-right-from-bracket' : 'fa-right-to-bracket'"></i>
+                    <span class="ms-1" th:text="*{member} ? '로그아웃' : '로그인'">로그인</span>
                 </a>
             </li>
             <li>

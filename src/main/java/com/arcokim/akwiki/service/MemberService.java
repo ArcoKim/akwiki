@@ -1,6 +1,7 @@
 package com.arcokim.akwiki.service;
 
 import com.arcokim.akwiki.domain.Member;
+import com.arcokim.akwiki.form.LoginForm;
 import com.arcokim.akwiki.form.RegisterForm;
 import com.arcokim.akwiki.repository.MemberRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -19,5 +20,11 @@ public class MemberService {
         Member member = new Member(registerForm.getEmail(), registerForm.getUsername(),
                 registerForm.getNickname(), registerForm.getPassword());
         memberRepository.save(member);
+    }
+
+    public Member login(LoginForm loginForm) {
+        return memberRepository.findByUsername(loginForm.getUsername())
+                .filter(member -> member.getPassword().equals(loginForm.getPassword()))
+                .orElse(null);
     }
 }
