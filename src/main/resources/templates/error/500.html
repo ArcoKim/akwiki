@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../../static/css/all.min.css" th:href="@{/css/all.min.css}" />
+    <link rel="stylesheet" href="../../static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+    <style>a { text-decoration: none; color: black; }</style>
+    <script src="../../static/scripts/bootstrap.bundle.min.js" th:src="@{/scripts/bootstrap.bundle.min.js}"></script>
+    <title>500 Internal Server Error</title>
+</head>
+<body>
+<div class="d-flex flex-column align-items-center justify-content-center vh-100">
+    <div class="text-center">
+        <div class="error-image mb-4">
+            <img src="../../static/images/500.webp" th:src="@{/images/500.webp}" alt="500" width="300" height="300">
+        </div>
+        <h1 class="display-1 font-weight-bold">500</h1>
+        <p class="lead">Internal Server Error</p>
+        <p class="mb-4">서비스에 일시적인 문제가 있습니다. 다시 시도해 보세요.<br>이 메시지가 계속 나타나면 나중에 다시 시도해 보세요.</p>
+        <a href="javascript:history.back();" class="btn btn-primary">이전 페이지</a>
+        <a href="../home.html" th:href="@{/}" class="btn btn-secondary">AK.WIKI 홈</a>
+    </div>
+</div>
+</body>
+</html>
