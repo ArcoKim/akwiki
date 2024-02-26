@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{base :: layout (${article.title}, ~{::article}, ${base})}">
+
+<head>
+    <link rel="stylesheet" href="../static/css/all.min.css" th:href="@{/css/all.min.css}" />
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+    <style>a { text-decoration: none; color: black; }</style>
+    <script src="../static/scripts/bootstrap.bundle.min.js" th:src="@{/scripts/bootstrap.bundle.min.js}"></script>
+</head>
+
+<body>
+
+<article>
+    <p>최근 수정 시각 : <span th:text="${formattedDate}">2024-02-13 23:11:40</span></p>
+    <hr>
+    <p th:text="${article.body}">본문</p>
+</article>
+
+</body>
+</html>

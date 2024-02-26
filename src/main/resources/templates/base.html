@@ -19,8 +19,8 @@
 
     <div>
         <div class="container-fluid">
-            <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search">
+            <form class="d-flex" role="search" method="POST" th:action="@{/search}">
+                <input class="form-control me-2" type="search" placeholder="Search" name="title" required>
                 <button class="btn btn-outline-success" type="submit">Search</button>
                 <button type="button" class="btn btn-primary mx-2"><i class="fas fa-random"></i></button>
             </form>
@@ -32,7 +32,6 @@
             <i class="fas fa-user"></i>
         </button>
         <ul class="dropdown-menu dropdown-menu-end" th:object="${base}">
-            <!--/*@thymesVar id="base" type="com.arcokim.akwiki.controller.Base"*/-->
             <li><p class="ps-3 pt-1">
                 <span th:text="*{member} ? '사용자' : '비로그인 사용자'">비로그인 사용자</span>
                 <br />
@@ -40,12 +39,16 @@
             </p></li>
             <li>
                 <a class="dropdown-item" href="member/login.html"
-                   th:href="*{member} ? @{/member/logout} : @{/member/login}">
-                    <i class="fa-solid" th:classappend="*{member} ? 'fa-right-from-bracket' : 'fa-right-to-bracket'"></i>
-                    <span class="ms-1" th:text="*{member} ? '로그아웃' : '로그인'">로그인</span>
+                   th:href="@{/member/login}" th:unless="*{member}">
+                    <i class="fa-solid fa-right-to-bracket"></i>
+                    <span class="ms-1" >로그인</span>
                 </a>
+                <form th:action="@{/member/logout}" method="POST" th:if="*{member}" style="text-align: center;">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    <input type="submit" value="로그아웃" style="background:none; border:none;">
+                </form>
             </li>
-            <li>
+            <li th:unless="*{member}">
                 <a class="dropdown-item" href="member/register.html" th:href="@{/member/register}">
                     <i class="fa-solid fa-user-plus"></i>
                     <span class="ms-1">회원가입</span>

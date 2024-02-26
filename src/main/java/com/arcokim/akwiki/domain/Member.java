@@ -6,10 +6,10 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Getter
-@Setter
 @ToString
 @EqualsAndHashCode
 public class Member {
+    @Setter
     private Long id;
     private String email;
     private String username;
