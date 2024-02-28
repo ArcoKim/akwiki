@@ -12,7 +12,20 @@
 <body>
 
 <article>
-    <p>최근 수정 시각 : <span th:text="${formattedDate}">2024-02-13 23:11:40</span></p>
+    <div class="d-flex justify-content-between">
+        <div class="left">
+            <p class="mb-2 mt-3">최근 수정 시각 : <span th:text="${formattedDate}">2024-02-13 23:11:40</span></p>
+            <p class="mb-2">
+                문서 생성자 : <span th:text="${article.history[0].contributor.nickname}">Admin</span>,
+                마지막 수정자 : <span th:text="${article.history[#lists.size(article.history)-1].contributor.nickname}">Admin</span>
+            </p>
+        </div>
+        <div class="right">
+            <button type="button" class="btn btn-primary"><i class="fa-solid fa-pen-to-square me-2"></i>편집</button>
+            <button type="button" class="btn btn-primary"><i class="fa-regular fa-comments me-2"></i>토론</button>
+            <button type="button" class="btn btn-primary"><i class="fa-solid fa-book me-2"></i>역사</button>
+        </div>
+    </div>
     <hr>
     <p th:text="${article.body}">본문</p>
 </article>

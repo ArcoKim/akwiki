@@ -30,12 +30,12 @@ public class MemberController {
 
     @PostMapping("/login")
     public String loginProcess(@Validated @ModelAttribute LoginForm loginForm, BindingResult bindingResult,
-                               HttpServletRequest request, Model model) {
+                               HttpServletRequest request) {
         if (bindingResult.hasErrors()) {
             return "member/login";
         }
 
-        Member loginMember = memberService.login(loginForm);
+        Member loginMember = memberService.login(loginForm.getUsername(), loginForm.getPassword());
         if (loginMember == null) {
             bindingResult.reject("loginFail", "아이디 또는 비밀번호가 일치하지 않습니다.");
             return "member/login";
@@ -68,7 +68,8 @@ public class MemberController {
             return "member/register";
         }
 
-        memberService.register(registerForm);
+        memberService.register(registerForm.getEmail(), registerForm.getUsername(),
+                registerForm.getNickname(), registerForm.getPassword());
         return "redirect:/";
     }
 

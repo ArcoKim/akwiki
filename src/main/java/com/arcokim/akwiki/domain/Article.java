@@ -1,28 +1,30 @@
 package com.arcokim.akwiki.domain;
 
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
-@ToString
-@EqualsAndHashCode
 public class Article {
     @Setter
     private Long id;
     private String title;
     private String body;
-    LocalDateTime update_time;
-    private List<Long> contributors;
+    private List<Record> history;
 
-    public Article(String title, String body, LocalDateTime update_time, List<Long> contributors) {
+    private Article(String title, String body, List<Record> history) {
         this.title = title;
         this.body = body;
-        this.update_time = update_time;
-        this.contributors = contributors;
+        this.history = history;
+    }
+
+    public static Article create(String title, String body, Member member, LocalDateTime time) {
+        Record record = Record.create(member, time);
+        List<Record> history = new ArrayList<>();
+        history.add(record);
+        return new Article(title, body, history);
     }
 }

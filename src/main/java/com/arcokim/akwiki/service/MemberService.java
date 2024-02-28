@@ -16,15 +16,14 @@ public class MemberService {
         this.memberRepository = memberRepository;
     }
 
-    public void register(RegisterForm registerForm) {
-        Member member = new Member(registerForm.getEmail(), registerForm.getUsername(),
-                registerForm.getNickname(), registerForm.getPassword());
+    public void register(String email, String username, String nickname, String password) {
+        Member member = Member.create(email, username, nickname, password);
         memberRepository.save(member);
     }
 
-    public Member login(LoginForm loginForm) {
-        return memberRepository.findByUsername(loginForm.getUsername())
-                .filter(member -> member.getPassword().equals(loginForm.getPassword()))
+    public Member login(String username, String password) {
+        return memberRepository.findByUsername(username)
+                .filter(member -> member.getPassword().equals(password))
                 .orElse(null);
     }
 }

@@ -23,11 +23,10 @@ public class TestDataInit {
 
     @EventListener(ApplicationReadyEvent.class)
     public void initData() {
-        Member admin = new Member("admin@example.com", "admin", "관리자", "admin1234!");
+        Member admin = Member.create("admin@example.com", "admin", "관리자", "admin1234!");
         memberRepository.save(admin);
 
-        Article article = new Article("Admin", "Admin[어드민]은 관리자입니다.",
-                LocalDateTime.now(), new ArrayList<>(Collections.singletonList(admin.getId())));
+        Article article = Article.create("Admin", "Admin[어드민]은 관리자입니다.", admin, LocalDateTime.now());
         articleRepository.save(article);
     }
 }

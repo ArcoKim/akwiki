@@ -23,7 +23,7 @@ public class ArticleController {
         Article article = articleService.read(title);
         model.addAttribute("article", article);
 
-        String formattedDate = article.getUpdate_time()
+        String formattedDate = article.getHistory().get(0).getTime()
                 .format(DateTimeFormatter.ofPattern("yyyy년 MM월 dd일 HH시 mm분 ss초"));
         model.addAttribute("formattedDate", formattedDate);
         return "article/read";
