@@ -13,6 +13,10 @@ public class ArticleService {
 
     private final ArticleRepository articleRepository;
 
+    public void create(Article article) {
+        articleRepository.save(article);
+    }
+
     public Article read(String title) {
         return articleRepository.findByTitle(title).orElse(null);
     }

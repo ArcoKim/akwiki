@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org"
-      th:replace="~{base :: layout ('AK.WIKI:대문', ~{::article}, ${base})}">
+      th:replace="~{base :: layout (title='AK.WIKI:대문', content=~{::article}, base=${base})}">
 
 <head>
     <link rel="stylesheet" href="../static/css/all.min.css" th:href="@{/css/all.min.css}" />

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{base :: layout (title='검색 결과', content=~{::article}, base=${base})}">
+<body>
+
+<head>
+    <link rel="stylesheet" href="../../static/css/all.min.css" th:href="@{/css/all.min.css}" />
+    <link rel="stylesheet" href="../../static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+    <style>a { text-decoration: none; color: black; }</style>
+    <script src="../../static/scripts/bootstrap.bundle.min.js" th:src="@{/scripts/bootstrap.bundle.min.js}"></script>
+</head>
+
+<article>
+    <div th:each="article : ${search}" style="cursor: pointer;"
+         th:onclick="|location.href='@{/article/{title}(title=${article.title})}'|" onclick="location.href='read.html'">
+        <h3 th:text="${article.title}">게시글 제목</h3>
+        <p>최근 수정 시각 : <span th:text="${#temporals.format(article.history[#lists.size(article.history)-1].time, 'yyyy년 MM월 dd일 HH시 mm분 ss초')}">2024-02-13 23:11:40</span></p>
+        <p>
+            문서 생성자 : <span th:text="${article.history[0].contributor.nickname}" style="color: dodgerblue;">Admin</span>,
+            마지막 수정자 : <span th:text="${article.history[#lists.size(article.history)-1].contributor.nickname}" style="color: dodgerblue;">Admin</span>
+        </p>
+        <hr>
+    </div>
+</article>
+
+</body>
+</html>

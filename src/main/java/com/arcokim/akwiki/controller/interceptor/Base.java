@@ -1,4 +1,4 @@
-package com.arcokim.akwiki.controller;
+package com.arcokim.akwiki.controller.interceptor;
 
 import com.arcokim.akwiki.domain.Member;
 import lombok.Getter;

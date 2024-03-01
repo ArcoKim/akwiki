@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org"
-      th:replace="~{base :: layout ('로그인', ~{::article}, ${base})}">
+      th:replace="~{base :: layout (title='로그인', content=~{::article}, base=${base})}">
 <body>
 
 <head>

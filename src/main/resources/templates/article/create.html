@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{base :: layout (title='문서 생성', content=~{::article}, base=${base})}">
+
+<head>
+    <link rel="stylesheet" href="../../static/css/all.min.css" th:href="@{/css/all.min.css}" />
+    <link rel="stylesheet" href="../../static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+    <style>a { text-decoration: none; color: black; }</style>
+    <script src="../../static/scripts/bootstrap.bundle.min.js" th:src="@{/scripts/bootstrap.bundle.min.js}"></script>
+</head>
+
+<body>
+
+<article>
+    <form th:action method="POST" th:object="${createForm}">
+        <div class="mb-3">
+            <label for="title" class="form-label">제목</label>
+            <input type="text" class="form-control" id="title" th:field="*{title}">
+            <div class="alert alert-warning" role="alert" th:errors="*{title}">제목 오류</div>
+        </div>
+        <div class="mb-3">
+            <label for="body" class="form-label">내용</label>
+            <textarea class="form-control" id="body" th:field="*{body}" style="height: 300px"></textarea>
+            <div class="alert alert-warning" role="alert" th:errors="*{body}">내용 오류</div>
+        </div>
+        <div class="float-end">
+            <button type="submit" class="btn btn-primary">문서 생성</button>
+        </div>
+    </form>
+</article>
+
+</body>
+</html>

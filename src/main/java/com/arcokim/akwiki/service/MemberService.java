@@ -1,13 +1,9 @@
 package com.arcokim.akwiki.service;
 
 import com.arcokim.akwiki.domain.Member;
-import com.arcokim.akwiki.form.LoginForm;
-import com.arcokim.akwiki.form.RegisterForm;
 import com.arcokim.akwiki.repository.MemberRepository;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-@Slf4j
 @Service
 public class MemberService {
     private final MemberRepository memberRepository;

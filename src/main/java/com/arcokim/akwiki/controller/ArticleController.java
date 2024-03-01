@@ -1,15 +1,17 @@
 package com.arcokim.akwiki.controller;
 
 import com.arcokim.akwiki.domain.Article;
+import com.arcokim.akwiki.domain.Member;
+import com.arcokim.akwiki.form.CreateForm;
 import com.arcokim.akwiki.service.ArticleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
-import java.time.format.DateTimeFormatter;
+import java.time.LocalDateTime;
 
 @RequiredArgsConstructor
 @Controller
@@ -22,10 +24,25 @@ public class ArticleController {
     public String read(@PathVariable String title, Model model) {
         Article article = articleService.read(title);
         model.addAttribute("article", article);
-
-        String formattedDate = article.getHistory().get(0).getTime()
-                .format(DateTimeFormatter.ofPattern("yyyy년 MM월 dd일 HH시 mm분 ss초"));
-        model.addAttribute("formattedDate", formattedDate);
         return "article/read";
+    }
+
+    @GetMapping("/create")
+    public String create(Model model) {
+        model.addAttribute("createForm", new CreateForm());
+        return "article/create";
+    }
+
+    @PostMapping("/create")
+    public String createProcess(@Validated @ModelAttribute CreateForm createForm, BindingResult bindingResult,
+                                 @SessionAttribute("member") Member member) {
+        if (bindingResult.hasErrors()) {
+            return "article/create";
+        }
+
+        Article article = Article.create(createForm.getTitle(), createForm.getBody(), member, LocalDateTime.now());
+        articleService.create(article);
+
+        return "redirect:/article/" + article.getTitle();
     }
 }
